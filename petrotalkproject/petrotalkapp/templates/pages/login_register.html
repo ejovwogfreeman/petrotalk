@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %} {% if page == 'login_page' %}
+<div class="container">
+  <form method="POST" style="margin-top: 100px">
+    {% csrf_token %} {{form.as_p}}
+    <button>Login</button>
+  </form>
+</div>
+{% else %}
+<div class="container">
+  <form method="POST" style="margin-top: 100px">
+    {% csrf_token %} {{form.as_p}}
+    <button>Register</button>
+  </form>
+</div>
+{% endif %} {% endblock %}

@@ -1,0 +1,18 @@
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+  crossorigin="anonymous"
+></script>
+<script>
+  let icon = document.getElementById("icon");
+  let accountStats = document.getElementById("account-stats");
+  icon.addEventListener("click", () => {
+    if (icon.className.includes("bi-caret-down")) {
+      icon.setAttribute("class", "bi bi-caret-up");
+      accountStats.classList.add("show");
+    } else {
+      icon.setAttribute("class", "bi bi-caret-down");
+      accountStats.classList.remove("show");
+    }
+  });
+</script>
