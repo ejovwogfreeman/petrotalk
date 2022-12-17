@@ -1,0 +1,52 @@
+{% load static %}
+<!-- navigarion bar -->
+<nav class="navbar-contents">
+  <h3 class="logo">
+    <a
+      href="{% url 'home_page' %}"
+      style="color: white; text-decoration: none"
+      class="text-start"
+    >
+      <i class="bi bi-nut"></i>
+      <span style="margin-left: -3px !important">PetroTalk</span>
+    </a>
+  </h3>
+  <div class="form">
+    <form action="">
+      <i class="bi bi-search"></i>
+      <input type="text" placeholder="Type here to search" name="" id="" />
+    </form>
+  </div>
+  <div class="account">
+    <span>
+      <img src="{{request.user.image.url}}" alt="" class="profile-img" />
+      <span>Account</span>
+      <i class="bi bi-caret-down" id="icon"></i>
+    </span>
+    <ul class="account-stats" id="account-stats">
+      {% if request.user.is_authenticated %}
+      <li>
+        <a href="{% url 'profile_page' %}" class="first"
+          ><i class="bi bi-box-arrow-in-right"></i>Profile</a
+        >
+      </li>
+      <li>
+        <a href="{% url 'logout_page' %}" class="last"
+          ><i class="bi bi-person-plus"></i>Logout</a
+        >
+      </li>
+      {% else %}
+      <li>
+        <a href="{% url 'login_page' %}" class="first"
+          ><i class="bi bi-box-arrow-in-right"></i>Login</a
+        >
+      </li>
+      <li>
+        <a href="{% url 'register_page' %}" class="last"
+          ><i class="bi bi-person-plus"></i>Register</a
+        >
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
