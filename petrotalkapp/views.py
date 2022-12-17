@@ -26,7 +26,7 @@ def register_page(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            messages.success(request, f'accouunt created for {user.username} succefully')
+            messages.success(request, f'accouunt created for {user.username} successfully')
             return redirect('login_page')
     else:
         form = UserRegisterForm()
