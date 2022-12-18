@@ -356,6 +356,10 @@
     color: whitesmoke;
   }
 
+  .logo-text {
+    color: red;
+  }
+
   @media screen and (max-width: 1050px) {
     .account-stats {
       right: 10px;
@@ -372,6 +376,9 @@
   }
 
   @media screen and (max-width: 960px) {
+    .center {
+      padding-top: 70px !important;
+    }
     .main-content .left {
       display: none;
     }
@@ -464,6 +471,34 @@
     }
     .room .account small {
       font-size: 12px;
+    }
+    .logo-text {
+      font-size: 18px;
+    }
+    .center form {
+      padding: 60px 15px 15px 15px !important;
+    }
+  }
+  @media screen and (max-width: 305px) {
+    .logo-text {
+      font-size: 15px;
+      width: 90px;
+    }
+    .account img {
+      width: 20px;
+      height: 20px;
+    }
+    .account span {
+      font-size: 12px;
+    }
+    .navbar-contents {
+      height: 50px;
+    }
+    .center form {
+      padding: 10px !important;
+    }
+    .center form {
+      padding: 70px 15px 15px 15px !important;
     }
   }
 </style>

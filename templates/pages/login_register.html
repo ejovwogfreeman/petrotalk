@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %} {% if page == 'login_page' %}
-<form method="POST" style="margin-top: 100px">
-  <h5 class="form-header">Welcome Back! Please Login to contiue</h5>
+<form method="POST">
+  <h5 class="form-header">Please Login to contiue</h5>
   {% csrf_token %} {{form.as_p}}
   <button>Login</button>
   <div class="d-block text-center mt-3">
@@ -8,7 +8,7 @@
   </div>
 </form>
 {% else %}
-<form method="POST" style="margin-top: 100px">
+<form method="POST">
   <h5 class="form-header">Register to Join Room</h5>
   {% csrf_token %} {{form.as_p}}
   <button>Register</button>

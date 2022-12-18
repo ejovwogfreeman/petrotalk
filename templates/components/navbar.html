@@ -5,7 +5,7 @@
     <a
       href="{% url 'home_page' %}"
       style="color: white; text-decoration: none"
-      class="text-start"
+      class="text-start logo-text"
     >
       <i class="bi bi-nut"></i>
       <span style="margin-left: -3px !important">PetroTalk</span>
@@ -19,7 +19,11 @@
   </div>
   <div class="account">
     <span>
+      {% if request.user.is_authenticate %}
       <img src="{{request.user.image.url}}" alt="" class="profile-img" />
+      {% else %}
+      <img src="{% static 'default.jpg' %}" alt="" class="profile-img" />
+      {% endif %}
       <span>Account</span>
       <i class="bi bi-caret-down" id="icon"></i>
     </span>
