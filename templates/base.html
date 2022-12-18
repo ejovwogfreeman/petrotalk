@@ -26,7 +26,7 @@
   <style></style>
   <body>
     <span>{% include 'components/navbar.html' %} </span>
-    {% if page == 'home_page' %}
+    <!-- {% if page == 'home_page' %}
     <div class="search-widget">
       <form action="">
         <i class="bi bi-search"></i>
@@ -37,12 +37,28 @@
         <a href="">RECENT ACTIVITIES</a>
       </div>
     </div>
-    {% else %}<span></span> {% endif %}
+    {% else %}<span></span> {% endif %} -->
     <div class="main-content">
       <div class="left">{% include 'components/left.html' %}</div>
       <div class="center">
-        {% if messages %}
-        <div class="messages">
+        {% if page == 'home_page' %}
+        <div class="search-widget">
+          <form action="">
+            <i class="bi bi-search"></i>
+            <input
+              type="text"
+              placeholder="Type here to search"
+              name=""
+              id=""
+            />
+          </form>
+          <div class="links">
+            <a href="">BROWSE TOPICS</a>
+            <a href="">RECENT ACTIVITIES</a>
+          </div>
+        </div>
+        {% else %}<span></span> {% endif %} {% if messages %}
+        <div class="messages mb-0 mt-2">
           {% for message in messages %}
           <div
             {%
