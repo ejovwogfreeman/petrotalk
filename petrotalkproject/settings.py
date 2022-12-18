@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-u_fbq#0%l3lyqk23_-qj225(ud@ufoh1konau(1ar_tz==n3rt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['https://petrotalk.up.railway.app']
 
 
 # Application definition
