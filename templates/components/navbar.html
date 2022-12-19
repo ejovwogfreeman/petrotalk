@@ -19,10 +19,15 @@
   </div>
   <div class="account">
     <span>
-      {% if request.user.is_authenticate %}
-      <img src="{{request.user.image.url}}" alt="" class="profile-img" />
+      {% if request.user.is_authenticated %}
+      <img
+        src="{{request.user.image.url}}"
+        alt=""
+        class="profile-img"
+        style="object-fit: contain"
+      />
       {% else %}
-      <img src="{% static 'default.jpg' %}" alt="" class="profile-img" />
+      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
       {% endif %}
       <span>Account</span>
       <i class="bi bi-caret-down" id="icon"></i>
