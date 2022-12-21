@@ -138,8 +138,6 @@ def logout_page(request):
     messages.warning(request, 'You have logged out, log in again to continue')
     return redirect('login_page')
 
-
-@login_required(login_url="login_page")
 def profile_page(request, pk):
     user = User.objects.get(username=pk)
     rooms = Room.objects.all()
