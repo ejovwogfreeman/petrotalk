@@ -26,10 +26,10 @@
       <small>{{room.created_at|timesince}} ago.</small>
     </span>
     <span style="flex: 1; text-align: right">
-      <a href="{% url 'update_room_page' room.id%}"
+      <a href="{% url 'update_room_page' room.id %}"
         ><i class="bi bi-pencil-square"></i
       ></a>
-      <a href="{% url 'delete_room_page' room.id%}"
+      <a href="{% url 'delete_room_page' room.id %}"
         ><i class="bi bi-trash"></i></a
     ></span>
   </div>
@@ -70,11 +70,8 @@
           <small>{{message.created_at|timesince}} ago.</small>
         </span>
         <span style="flex: 1; text-align: right">
-          <a href="{% url 'update_room_page' room.id%}"
-            ><i class="bi bi-pencil-square"></i
-          ></a>
-          <a href="{% url 'delete_room_page' room.id%}"
-            ><i class="bi bi-trash"></i></a
+          <a href="{}"><i class="bi bi-pencil-square"></i></a>
+          <a href="{}"><i class="bi bi-trash"></i></a
         ></span>
       </div>
       <p class="text-start">{{message.body}}</p>
