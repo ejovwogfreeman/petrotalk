@@ -78,6 +78,7 @@
     </div>
     {% endfor%}
   </div>
+  {% if request.user.is_authenticated %}
   <div
     class="input-group d-flex align-items-center justify-content-between"
     style="border-top: 10px solid transparent"
@@ -106,6 +107,7 @@
       <i class="bi bi-send-fill"></i>
     </button>
   </div>
+  {% endif %}
 </form>
 {% endblock %}
 
