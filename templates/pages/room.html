@@ -1,7 +1,12 @@
 {% extends 'base.html' %} {% block content %}
-<h3>{{room.name}}</h3>
-<a href="{% url 'update_room_page' room.id%}"
-  ><i class="bi bi-pencil-square"></i
-></a>
-<a href="{% url 'delete_room_page' room.id%}"><i class="bi bi-trash"></i></a>
+<form action="">
+  <h5 class="form-header">{{room.name}}</h5>
+  <a href="{% url 'update_room_page' room.id%}"
+    ><i class="bi bi-pencil-square"></i
+  ></a>
+  <a href="{% url 'delete_room_page' room.id%}"><i class="bi bi-trash"></i></a>
+  {% for message in room_messages %}
+  <p>{{message.body}}</p>
+  {% endfor%}
+</form>
 {% endblock %}

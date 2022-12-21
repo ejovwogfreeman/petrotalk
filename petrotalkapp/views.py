@@ -24,8 +24,10 @@ def topics(request):
 
 def room_page(request, pk):
     room = Room.objects.get(id=pk)
+    room_messages = room.message_set.all()
     context = {
-        'room': room
+        'room': room,
+        'room_messages': room_messages
     }
     return render(request, 'pages/room.html', context)
 
