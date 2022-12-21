@@ -1,12 +1,72 @@
 {% extends 'base.html' %} {% block content %}
-<form action="">
-  <h5 class="form-header">{{room.name}}</h5>
-  <a href="{% url 'update_room_page' room.id%}"
-    ><i class="bi bi-pencil-square"></i
-  ></a>
-  <a href="{% url 'delete_room_page' room.id%}"><i class="bi bi-trash"></i></a>
-  {% for message in room_messages %}
-  <p>{{message.body}}</p>
-  {% endfor%}
+<form method="POST" style="padding-top: 100px !important">
+  <h5 class="form-header d-flex align-items-center justify-content-between">
+    <a
+      style="flex: 1; text-align: left; color: black"
+      href="{{request.META.HTTP_REFERER}}"
+      ><i class="bi bi-arrow-left"></i
+    ></a>
+    <span style="flex: 2">{{room.name}}</span>
+    <span style="flex: 1; text-align: right">
+      <a href="{% url 'update_room_page' room.id%}"
+        ><i class="bi bi-pencil-square"></i
+      ></a>
+      <a href="{% url 'delete_room_page' room.id%}"
+        ><i class="bi bi-trash"></i></a
+    ></span>
+  </h5>
+  <div class="d-flex mb-3">{{room.description}}</div>
+  <div
+    class="message-cont p-2 pt-0"
+    style="
+      background-color: rgba(0, 0, 0, 0.5);
+      height: 200px;
+      overflow-y: scroll;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    "
+  >
+    {% for message in room_messages %}
+    <p
+      class="message-cont p-2 mt-2 rounded"
+      style="
+        border-left: 3px solid rgba(256, 256, 256, 0.5);
+        background-color: rgba(256, 256, 256, 0.1);
+      "
+    >
+      {{message.body}}
+    </p>
+    {% endfor%}
+  </div>
+  <div
+    class="input-group d-flex align-items-center justify-content-between"
+    style="border-top: 10px solid transparent"
+  >
+    <input
+      type="text"
+      placeholder="Type your text here..."
+      style="
+        width: 90%;
+        margin: 0px !important;
+        padding: 5px !important;
+        background-color: rgba(256, 256, 256, 0.5);
+      "
+    />
+    <button
+      class="btn btn-outline-secondary d-inline"
+      type="button"
+      id="button-addon2"
+      style="
+        width: 10%;
+        margin: 0px !important;
+        padding: 5px !important;
+        background-color: rgba(256, 256, 256, 0.1);
+      "
+    >
+      <i class="bi bi-send-fill"></i>
+    </button>
+  </div>
 </form>
 {% endblock %}
+
+<style></style>
