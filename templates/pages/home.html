@@ -2,28 +2,45 @@
 <div class="rooms-bar">
   <span>
     <h5>ROOMS</h5>
-    <p>5 rooms available</p>
+    {% if rooms.count < 1 %}
+    <p>No room available</p>
+    {% elif rooms.count == 1%}
+    <p>{{rooms.count}} room available</p>
+    {% elif rooms.count > 1 %}
+    <p>{{rooms.count}} rooms available</p>
+    {% endif %}
   </span>
-  <a href="">
+  <a href="{% url 'create_room_page' %}">
     <i class="bi bi-plus"></i>
     <span>Create Room</span></a
   >
 </div>
 <div class="room-name my-3">ALL ROOMS</div>
 <div class="rooms-container">
+  {% for room in rooms %}
   <div class="room">
     <div class="account">
       <span>
         <img
-          src="{% static 'images/default.jpg' %}"
+          src="{{room.author.image.url}}"
           alt=""
           class="profile-img"
+          style="
+            object-fit: contain;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+          "
         />
-        <span>Host @ejovwogfreeman</span>
+        <span
+          ><a href="{% url 'profile_page' room.author.username %}"
+            >Host @{{room.author.username}}</a
+          ></span
+        >
       </span>
-      <small> created 6hrs 5mins ago </small>
+      <small> {{room.created_at|timesince}} ago</small>
     </div>
-    <h5 class="my-3">Lets Learn Formation Evaluation</h5>
+    <h5 class="my-3">
+      <a href="{% url 'room_page' room.id %}">{{room.name}}</a>
+    </h5>
     <span>
       <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
       <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
@@ -33,64 +50,15 @@
     <div class="bottom">
       <span>
         <i class="bi bi-people"></i>
-        <small>5 people joined</small>
+        {% if room.participants > 0 %}
+        <small>{{room.participants}} people joined</small>
+        {% else %}
+        <small>No participant</small>
+        {% endif %}
       </span>
-      <small class="topic">Reservoir</small>
+      <small class="topic">{{room.topic}}</small>
     </div>
   </div>
-  <div class="room">
-    <div class="account">
-      <span>
-        <img
-          src="{% static 'images/default.jpg' %}"
-          alt=""
-          class="profile-img"
-        />
-        <span>Host @ejovwogfreeman</span>
-      </span>
-      <small> created 6hrs 5mins ago </small>
-    </div>
-    <h5 class="my-3">Lets Learn Formation Evaluation</h5>
-    <span>
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-    </span>
-    <hr class="my-3" />
-    <div class="bottom">
-      <span>
-        <i class="bi bi-people"></i>
-        <small>5 people joined</small>
-      </span>
-      <small class="topic">Reservoir</small>
-    </div>
-  </div>
-  <div class="room">
-    <div class="account">
-      <span>
-        <img
-          src="{% static 'images/default.jpg' %}"
-          alt=""
-          class="profile-img"
-        />
-        <span>Host @ejovwogfreeman</span>
-      </span>
-      <small> created 6hrs 5mins ago </small>
-    </div>
-    <h5 class="my-3">Lets Learn Formation Evaluation</h5>
-    <span>
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-    </span>
-    <hr class="my-3" />
-    <div class="bottom">
-      <span>
-        <i class="bi bi-people"></i>
-        <small>5 people joined</small>
-      </span>
-      <small class="topic">Reservoir</small>
-    </div>
-  </div>
+  {% endfor %}
 </div>
 {% endblock %}

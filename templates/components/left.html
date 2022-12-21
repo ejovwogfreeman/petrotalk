@@ -2,28 +2,15 @@
   <h6 class="mb-3">BROWSE TOPICS</h6>
   <ul>
     <li>
-      <a href=""><span>All</span><small>20</small></a>
+      <a href=""><span>All</span><small>{{topics.count}}</small></a>
     </li>
+    {% for topic in topics %}
     <li>
-      <a href=""><span>Hse</span><small>6</small></a>
+      <a href=""
+        ><span>{{topic.name}}</span
+        ><small>{{topic.room_set.all.count}}</small></a
+      >
     </li>
-    <li>
-      <a href=""><span>Reservoir</span><small>7</small></a>
-    </li>
-    <li>
-      <a href=""><span>Drilling</span><small>4</small></a>
-    </li>
-    <li>
-      <a href=""><span>Well Test</span><small>3</small></a>
-    </li>
-    <li>
-      <a href=""><span>Reservoir</span><small>7</small></a>
-    </li>
-    <li>
-      <a href=""><span>Drilling</span><small>4</small></a>
-    </li>
-    <li>
-      <a href=""><span>Well Test</span><small>3</small></a>
-    </li>
+    {% endfor %}
   </ul>
 </div>

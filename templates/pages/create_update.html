@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %} {% if page == 'create_room_page'%}
+<form method="POST">
+  <h5 class="form-header">Create Room</h5>
+  {% csrf_token %} {{form.as_p}}
+  <button>CREATE ROOM</button>
+</form>
+{% else %}
+<form method="POST">
+  <h5 class="form-header">Update Room</h5>
+  {% csrf_token %} {{form.as_p}}
+  <button>UPDATE ROOM</button>
+</form>
+{% endif %} {% endblock %}

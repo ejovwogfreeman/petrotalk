@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<form method="POST">
+  {% csrf_token %}
+  <h5 class="form-header d-flex align-items-center justify-content-between">
+    <a
+      style="flex: 1; text-align: left; color: black"
+      href="{{request.META.HTTP_REFERER}}"
+      ><i class="bi bi-arrow-left"></i></a
+    ><span style="flex: 1">Delete</span>
+    <span style="flex: 1"></span>
+  </h5>
+  <p>Are you sure you want to delete "{{obj}}"?</p>
+  <div class="d-flex">
+    <button>CONFIRM</button>
+  </div>
+</form>
+{% endblock %}

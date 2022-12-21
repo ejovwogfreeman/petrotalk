@@ -24,7 +24,7 @@
         src="{{request.user.image.url}}"
         alt=""
         class="profile-img"
-        style="object-fit: contain"
+        style="object-fit: contain; border: 2px solid rgba(255, 255, 255, 0.5)"
       />
       {% else %}
       <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
@@ -35,7 +35,7 @@
     <ul class="account-stats" id="account-stats">
       {% if request.user.is_authenticated %}
       <li>
-        <a href="{% url 'profile_page' %}" class="first"
+        <a href="{% url 'profile_page' user.username %}" class="first"
           ><i class="bi bi-box-arrow-in-right"></i>Profile</a
         >
       </li>
