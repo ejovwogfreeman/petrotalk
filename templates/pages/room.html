@@ -1,9 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <form method="POST" style="padding-top: 80px !important">
+  {% csrf_token %}
   <h5 class="form-header d-flex align-items-center">
-    <a
-      style="text-align: left; color: black"
-      href="{{request.META.HTTP_REFERER}}"
+    <a style="text-align: left; color: black" href="/"
       ><i class="bi bi-arrow-left"></i
     ></a>
     <span class="ms-3">{{room.name}}</span>
@@ -22,7 +21,7 @@
       height="40px"
     />
     <span class="ms-3">
-      <h6>@{{room.author.username}}</h6>
+      <h6>Host @{{room.author.username}}</h6>
       <small>{{room.created_at|timesince}} ago.</small>
     </span>
     {% if request.user == room.author %}
@@ -37,6 +36,7 @@
   </div>
   <div class="d-flex mb-3">{{room.description}}</div>
   <div
+    id="messageBox"
     class="message-cont p-2 pt-0"
     style="
       background-color: rgba(0, 0, 0, 0.5);
@@ -44,6 +44,7 @@
       overflow-y: scroll;
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
+      transition: 0.5s ease-in-out;
     "
   >
     {% for message in room_messages %}
@@ -88,8 +89,10 @@
     style="border-top: 10px solid transparent"
   >
     <input
+      name="body"
       type="text"
       placeholder="Type your text here..."
+      required
       style="
         width: 80%;
         margin: 0px !important;
@@ -99,8 +102,6 @@
     />
     <button
       class="btn btn-outline-secondary d-inline"
-      type="button"
-      id="button-addon2"
       style="
         width: 20%;
         margin: 0px !important;
@@ -114,5 +115,3 @@
   {% endif %}
 </form>
 {% endblock %}
-
-<style></style>

@@ -37,7 +37,7 @@ class Room(models.Model):
 
 class Message(models.Model):
     author = models.ForeignKey(User, on_delete = models.CASCADE)
-    Room = models.ForeignKey(Room, on_delete = models.CASCADE)
+    room = models.ForeignKey(Room, on_delete = models.CASCADE)
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False, unique=True)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)

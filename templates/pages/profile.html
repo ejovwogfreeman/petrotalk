@@ -70,16 +70,19 @@
       <a href="{% url 'room_page' room.id %}">{{room.name}}</a>
     </h5>
     <span>
+      <img src="{{room.participants.image.url}}" alt="" />
+      <!-- <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
       <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
+      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" /> -->
     </span>
     <hr class="my-3" />
     <div class="bottom">
       <span>
         <i class="bi bi-people"></i>
-        {% if room.participants > 0 %}
-        <small>{{room.participants}} people joined</small>
+        {% if room.participants.count > 1 %}
+        <small>{{room.participants.count}} people joined</small>
+        {% elif room.participants.count == 1 %}
+        <small>{{room.participants.count}} person joined</small>
         {% else %}
         <small>No participant</small>
         {% endif %}

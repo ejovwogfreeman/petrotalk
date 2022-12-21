@@ -85,5 +85,11 @@
         accountStats.classList.remove("show");
       }
     });
+    let m = document.getElementById("messageBox");
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        m.scrollTop = m.scrollHeight;
+      }, 1000);
+    });
   </script>
 </html>
