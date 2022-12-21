@@ -29,6 +29,7 @@ def room_page(request, pk):
     }
     return render(request, 'pages/room.html', context)
 
+@login_required(login_url="login_page")
 def create_room_page(request):
     page="create_room_page"
     if request.method == "POST":
@@ -48,6 +49,7 @@ def create_room_page(request):
     }
     return render(request, 'pages/create_update.html', context)
 
+@login_required(login_url="login_page")
 def update_room_page(request, pk):
     page = "update_room_page"
     room = Room.objects.get(id=pk)
@@ -68,6 +70,7 @@ def update_room_page(request, pk):
     }
     return render(request, 'pages/create_update.html', context)
 
+@login_required(login_url="login_page")
 def delete_room_page(request, pk):
     room = Room.objects.get(id=pk)
     if request.method == 'POST':
