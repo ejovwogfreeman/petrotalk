@@ -1,12 +1,30 @@
 {% extends 'base.html' %} {% block content %}
-<form method="POST" style="padding-top: 100px !important">
-  <h5 class="form-header d-flex align-items-center justify-content-between">
+<form method="POST" style="padding-top: 80px !important">
+  <h5 class="form-header d-flex align-items-center">
     <a
-      style="flex: 1; text-align: left; color: black"
+      style="text-align: left; color: black"
       href="{{request.META.HTTP_REFERER}}"
       ><i class="bi bi-arrow-left"></i
     ></a>
-    <span style="flex: 2">{{room.name}}</span>
+    <span class="ms-3">{{room.name}}</span>
+  </h5>
+  <div class="d-flex">
+    <img
+      src="{{room.author.image.url}}"
+      alt=""
+      class="profile-img"
+      style="
+        object-fit: contain;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+      "
+      width="40px"
+      height="40px"
+    />
+    <span class="ms-3">
+      <h6>@{{room.author.username}}</h6>
+      <small>{{room.created_at|timesince}} ago.</small>
+    </span>
     <span style="flex: 1; text-align: right">
       <a href="{% url 'update_room_page' room.id%}"
         ><i class="bi bi-pencil-square"></i
@@ -14,7 +32,7 @@
       <a href="{% url 'delete_room_page' room.id%}"
         ><i class="bi bi-trash"></i></a
     ></span>
-  </h5>
+  </div>
   <div class="d-flex mb-3">{{room.description}}</div>
   <div
     class="message-cont p-2 pt-0"
@@ -27,15 +45,40 @@
     "
   >
     {% for message in room_messages %}
-    <p
+    <div
       class="message-cont p-2 mt-2 rounded"
       style="
         border-left: 3px solid rgba(256, 256, 256, 0.5);
         background-color: rgba(256, 256, 256, 0.1);
       "
     >
-      {{message.body}}
-    </p>
+      <div class="d-flex">
+        <img
+          src="{{message.author.image.url}}"
+          alt=""
+          class="profile-img"
+          style="
+            object-fit: contain;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+          "
+          width="40px"
+          height="40px"
+        />
+        <span class="ms-3">
+          <h6>@{{message.author.username}}</h6>
+          <small>{{message.created_at|timesince}} ago.</small>
+        </span>
+        <span style="flex: 1; text-align: right">
+          <a href="{% url 'update_room_page' room.id%}"
+            ><i class="bi bi-pencil-square"></i
+          ></a>
+          <a href="{% url 'delete_room_page' room.id%}"
+            ><i class="bi bi-trash"></i></a
+        ></span>
+      </div>
+      <p class="text-start">{{message.body}}</p>
+    </div>
     {% endfor%}
   </div>
   <div
