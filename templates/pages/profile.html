@@ -40,9 +40,9 @@
 <hr />
 
 <div class="my-3" style="text-transform: uppercase">
-  {% if user.first_name and user.last_name %} Rooms
-  {{user.first_name}}&nbsp;{{user.last_name}} participates in. {% else %} Rooms
-  {{user.username}} participates in. {% endif %}
+  {% if user.first_name and user.last_name %} Rooms Created By
+  {{user.first_name}}&nbsp;{{user.last_name}} ({{rooms.count}}). {% else %}
+  Rooms Created By {{user.username}} ({{rooms.count}}). {% endif %}
 </div>
 <div class="rooms-container">
   {% for room in rooms %}
