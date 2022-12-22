@@ -12,7 +12,6 @@ from django.db.models import Q
 def home_page(request):
     page='home_page'
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-    # rooms = Room.objects.filter(topic__name__icontains=q)
     rooms = Room.objects.filter(        
         Q(topic__name__icontains=q) |
         Q(author__username__icontains=q) |
@@ -161,8 +160,6 @@ def logout_page(request):
     messages.warning(request, 'You have logged out, log in again to continue')
     return redirect('login_page')
 
-
-@login_required(login_url="login_page")
 def profile_page(request, pk):
     user = User.objects.get(username=pk)
     rooms = Room.objects.all()
@@ -206,4 +203,3 @@ def activity_page(request):
 
 def notfound_page(request, exception):
     return render(request, 'pages/notfound_page.html')
-
