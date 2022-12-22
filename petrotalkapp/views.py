@@ -6,20 +6,33 @@ from django.contrib.auth import login, logout
 from django.contrib import messages
 from .forms import * 
 from .models import *
+from django.db.models import Q
 
 # Create your views here.
 def home_page(request):
     page='home_page'
-    rooms = Room.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    # rooms = Room.objects.filter(topic__name__icontains=q)
+    rooms = Room.objects.filter(        
+        Q(topic__name__icontains=q) |
+        Q(author__username__icontains=q) |
+        Q(name__icontains=q) |
+        Q(description__icontains=q) 
+    )
     context = {
         'page': page,
-        'rooms': rooms
+        'rooms': rooms,
     }
     return render(request, 'pages/home.html', context)
 
 def topics(request):
     return {
         'topics' : Topic.objects.all()
+    }
+
+def activity(request):
+    return {
+        'activity' : Message.objects.all()
     }
 
 def room_page(request, pk):
@@ -38,6 +51,16 @@ def room_page(request, pk):
         'room_messages': room_messages,
     }
     return render(request, 'pages/room.html', context)
+
+@login_required(login_url='login')
+def delete_message_page(request, pk):
+    room_message = Message.objects.get(id=pk)
+    room = room_message.room
+    if request.method == 'POST':
+        room_message.delete()
+        messages.warning(request, f'message deleted successfully')
+        return redirect('room_page', room.id)
+    return render(request, 'pages/delete.html', {'obj': room_message})
 
 @login_required(login_url="login_page")
 def create_room_page(request):
@@ -164,5 +187,23 @@ def update_profile_page(request):
     }
     return render(request, 'pages/profile_update.html', context)
 
+
+def topics_page(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    topics = Topic.objects.filter(name__icontains=q)
+    context = {
+        'topics': topics
+    }
+    return render(request, 'pages/topics.html', context)
+
+
+def activity_page(request):
+    room_messages = Message.objects.all()
+    context = {
+        'room_messages': room_messages
+    }
+    return render(request, 'pages/activity.html', context)
+
 def notfound_page(request, exception):
     return render(request, 'pages/notfound_page.html')
+

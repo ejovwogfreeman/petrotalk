@@ -2,11 +2,13 @@
   <h6 class="mb-3">BROWSE TOPICS</h6>
   <ul>
     <li>
-      <a href=""><span>All</span><small>{{topics.count}}</small></a>
+      <a href="{% url 'home_page' %}"
+        ><span>All</span><small>{{topics.count}}</small></a
+      >
     </li>
     {% for topic in topics %}
     <li>
-      <a href=""
+      <a href="{% url 'home_page' %}?q={{topic.name}}"
         ><span>{{topic.name}}</span
         ><small>{{topic.room_set.all.count}}</small></a
       >

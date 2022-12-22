@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<div class="left left_topic" style="position: static; width: 100%">
+  <div>
+    <h6 class="mb-3">BROWSE TOPICS</h6>
+    <ul>
+      <li>
+        <a href="{% url 'home_page' %}"
+          ><span>All</span><small>{{topics.count}}</small></a
+        >
+      </li>
+      {% for topic in topics %}
+      <li>
+        <a href="{% url 'home_page' %}?q={{topic.name}}"
+          ><span>{{topic.name}}</span
+          ><small>{{topic.room_set.all.count}}</small></a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

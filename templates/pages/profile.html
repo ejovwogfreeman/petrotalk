@@ -69,12 +69,7 @@
     <h5 class="my-3">
       <a href="{% url 'room_page' room.id %}">{{room.name}}</a>
     </h5>
-    <span>
-      <img src="{{room.participants.image.url}}" alt="" />
-      <!-- <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" />
-      <img src="{% static 'images/default.jpg' %}" alt="" class="profile-img" /> -->
-    </span>
+    <p>{{room.description}}</p>
     <hr class="my-3" />
     <div class="bottom">
       <span>

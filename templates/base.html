@@ -36,13 +36,13 @@
             <input
               type="text"
               placeholder="Type here to search"
-              name=""
+              name="q"
               id=""
             />
           </form>
           <div class="links">
-            <a href="">BROWSE TOPICS</a>
-            <a href="">RECENT ACTIVITIES</a>
+            <a href="{% url 'topics_page' %}">BROWSE TOPICS</a>
+            <a href="{% url 'activity_page' %}">RECENT ACTIVITIES</a>
           </div>
         </div>
         {% else %}<span></span> {% endif %} {% if messages %}

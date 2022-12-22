@@ -1,4 +1,5 @@
-<div>
+{% extends 'base.html' %} {% block content %}
+<div class="right_activity">
   <h6 class="p-2">RECENT ACTIVITES</h6>
   <div class="activities" style="display: flex; flex-direction: column-reverse">
     {% for act in activity %}
@@ -16,3 +17,5 @@
     {% endfor %}
   </div>
 </div>
+
+{% endblock %}
