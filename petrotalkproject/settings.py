@@ -67,7 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 "petrotalkapp.views.topics", 
-                "petrotalkapp.views.activity"
+                "petrotalkapp.views.activity",
             ],
         },
     },

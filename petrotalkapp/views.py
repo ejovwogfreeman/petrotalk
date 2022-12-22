@@ -35,8 +35,10 @@ def activity(request):
     }
 
 def room_page(request, pk):
+    page="room_page"
     room = Room.objects.get(id=pk)
     room_messages = room.message_set.all()
+    room_participants = room.participants.all()
     if request.method == 'POST':
         message = Message.objects.create(
             author=request.user,
@@ -48,6 +50,8 @@ def room_page(request, pk):
     context = {
         'room': room,
         'room_messages': room_messages,
+        'page': page,
+        'room_participants' : room_participants
     }
     return render(request, 'pages/room.html', context)
 
@@ -198,6 +202,17 @@ def activity_page(request):
     room_messages = Message.objects.all()
     context = {
         'room_messages': room_messages
+    }
+    return render(request, 'pages/activity.html', context)
+
+def room_participants_page(request, pk):
+    page="room_participants_page"
+    room = Room.objects.get(id=pk)
+    room_participants = room.participants.all()
+    context = {
+        'room': room,
+        'room_participants' : room_participants,
+        'page': page
     }
     return render(request, 'pages/activity.html', context)
 

@@ -1,3 +1,25 @@
+{% if page == "room_page" %}
+<div>
+  <h6 class="p-2">ROOM PARTICIPANTS ({{room_participants.count}})</h6>
+  <div class="activities" style="display: flex; flex-direction: column-reverse">
+    {% for participant in room_participants %}
+    <div class="act">
+      <span class="d-flex align-items-center">
+        <img src="{{participant.image.url}}" alt="" class="profile-img" />
+        <div class="ms-2">
+          {% if participant.first_name and participant.last_name %}
+          <span style="display: block"
+            >{{participant.first_name}}&nbsp;{{participant.last_name}}</span
+          >
+          {% else %} {{participant.username}} {% endif %}
+          <span style="display: block">@{{participant.username}}</span>
+        </div>
+      </span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% else %}
 <div>
   <h6 class="p-2">RECENT ACTIVITES</h6>
   <div class="activities" style="display: flex; flex-direction: column-reverse">
@@ -16,3 +38,4 @@
     {% endfor %}
   </div>
 </div>
+{% endif %}
