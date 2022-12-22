@@ -162,7 +162,7 @@ def logout_page(request):
 
 def profile_page(request, pk):
     user = User.objects.get(username=pk)
-    rooms = Room.objects.filter(author=request.user)
+    rooms = Room.objects.filter(author=user)
     context = {
         'user': user,
         'rooms': rooms
